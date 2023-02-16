@@ -1,5 +1,6 @@
 import React from 'react'
 import AddButtons from '../AddButtons/index'
+import PlayFiles from '../playFiles/index'
 import './style.css'
 
 function index() {
@@ -9,7 +10,7 @@ function index() {
             <AddButtons/>
         </div>
         <div>
-            Files
+            <PlayFiles/>
         </div>
     </div>
   )
