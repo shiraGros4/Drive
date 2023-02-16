@@ -14,4 +14,13 @@ const createNewFolder = (data) => {
     return true
 }
 
-module.exports = { createNewFolder }
+const getFiles = async (path) => {
+  let filesSend = fs.readdirSync(path, (err, files) => {
+        if (err){
+          console.log(err);
+          return}
+      })
+      return filesSend
+}
+
+module.exports = { createNewFolder , getFiles }
