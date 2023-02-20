@@ -1,12 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import './style.css'
 import createFolder from '../../functions/createFolder';
+import FileContext from '../../context/fileContext'
 
 function NameFolder(props) {
+    const { setFiles } = useContext(FileContext)
     const [value, setValue] = useState('folder without name');
     const handleClick = () => {
         props.setNameFolder(false)
-        createFolder(value);
+        createFolder(setFiles, value);
         //checkExists -- if true -> open folder
         // if false --> EROR, main menu
         console.log(value);

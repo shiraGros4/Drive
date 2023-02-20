@@ -1,8 +1,9 @@
 import React from 'react'
+import './style.module.css'
 
-function File(props) {
+function File({name}) {
   return (
-    <div>{props.name}</div>
+    <div>{name}</div>
   )
 }
 
