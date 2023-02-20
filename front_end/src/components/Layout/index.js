@@ -1,9 +1,9 @@
 import React from 'react'
 import AddButtons from '../AddButtons/index'
-import PlayFiles from '../playFiles/index'
+import PlayFiles from '../PlayFiles/index'
 import './style.css'
 
-function index() {
+function Layout() {
   return (
     <div className='layout'>
         <div className='add-comp'>
@@ -16,4 +16,4 @@ function index() {
   )
 }
 
-export default index
+export default Layout
