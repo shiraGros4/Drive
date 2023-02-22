@@ -4,11 +4,11 @@ import createFolder from '../../functions/createFolder';
 import FileContext from '../../context/fileContext'
 
 function NameFolder({setNameFolder}) {
-    const { setFiles } = useContext(FileContext)
+    const { setFoldersDisplay } = useContext(FileContext)
     const [value, setValue] = useState('folder without name');
     const handleClick = () => {
         setNameFolder(false)
-        createFolder(setFiles, value);
+        createFolder(setFoldersDisplay , value);
         //checkExists -- if true -> open folder
         // if false --> EROR, main menu
         console.log(value);

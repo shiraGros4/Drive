@@ -1,5 +1,5 @@
 import axios from "axios"
-import readFiles from "./readFiles";
+import readFolders from "./readFolders";
 
 const createFolder = async (setFiles, name) => {
     let path;
@@ -16,7 +16,7 @@ const createFolder = async (setFiles, name) => {
             url: "http://localhost:4000/api/createFolder",
             data: {path: path, name: name}
           });
-          readFiles(localStorage.path ? localStorage.path : './myDrive').then(res => setFiles(res))
+          readFolders(localStorage.path ? localStorage.path : './myDrive').then(res => setFiles(res))
           
     }
     catch (error) {

@@ -1,10 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
+import FileContext from '../../context/fileContext';
 import addFile from '../../functions/addFile';
 
 function AddButtonFile() {
-  
+  const { setFiles } = useContext(FileContext)
   const inputRef = useRef('')
-  const [selectedFile, setSelectedFile] = useState(null);
+  const [selectedFile, setSelectedFile] = useState(undefined);
 
   const inputFileRef = (e) => {
     inputRef.current.click()
@@ -15,9 +16,12 @@ function AddButtonFile() {
   }
 
   useEffect (()=>{
-    let formData = new FormData();
-    formData.append("file", selectedFile)
-    if (formData) {addFile(formData)}
+    if (selectedFile){
+      let formData = new FormData();
+      formData.append("file", selectedFile)
+      if (formData) {addFile(formData, setFiles)}
+    }
+    
   }, [selectedFile])
 
 

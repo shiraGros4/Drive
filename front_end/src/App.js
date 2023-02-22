@@ -5,6 +5,8 @@ import { useState } from 'react';
 import FileContext from './context/fileContext';
 
 function App() {
+  const [ filesDisplay, setFilesDisplay] = useState([])
+  const [ foldersDisplay, setFoldersDisplay] = useState([])
   const [files, setFiles] = useState([])
   return (
     <div className="App">
@@ -12,7 +14,7 @@ function App() {
         My Drive
       </header>
       <body className='body'>
-        <FileContext.Provider value={{files, setFiles}}>
+        <FileContext.Provider value={{filesDisplay, setFilesDisplay, foldersDisplay, setFoldersDisplay}}>
           <Layout/>
         </FileContext.Provider>
       </body>

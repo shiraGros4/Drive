@@ -40,6 +40,18 @@ router.all(`/getFiles`, async (req, res)=> {
     }
 })
 
+router.all(`/getFolders`, async (req, res)=> {
+    try {
+        const files = await fileService.getFolders(req.query.q)
+        console.log(files);
+        res.send(files)
+    }
+    catch (error) {
+        console.log(error);
+    }
+})
+
+
 router.all('/uploadFile', upload.any('file'), async (req, res)=> {
     try {
         await fileService.uploadFile(req.files, req.query.q)
