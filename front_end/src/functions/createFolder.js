@@ -11,7 +11,7 @@ const createFolder = async (setFiles, name) => {
         path = localStorage.path;
     }
     try {
-        const res = await axios({
+        await axios({
             method: "post",
             url: "http://localhost:4000/api/createFolder",
             data: {path: path, name: name}

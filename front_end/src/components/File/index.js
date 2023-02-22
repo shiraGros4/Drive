@@ -1,9 +1,11 @@
 import React from 'react'
-import './style.module.css'
+import style from './style.module.css'
 
 function File({name}) {
   return (
-    <div>{name}</div>
+    <div className={style.files}>
+      {name}
+    </div>
   )
 }
 

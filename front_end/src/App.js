@@ -5,7 +5,7 @@ import { useState } from 'react';
 import FileContext from './context/fileContext';
 
 function App() {
-  const [files, setFiles] = useState('')
+  const [files, setFiles] = useState([])
   return (
     <div className="App">
       <header className='App-header'>
