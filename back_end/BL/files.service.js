@@ -1,5 +1,10 @@
 const fs = require('fs')
 
+const createMyDrive = () => {
+    let isExists = fs.existsSync('./myDrive')
+    if (!isExists) {fs.mkdirSync('./myDrive')}
+}
+
 const createNewFolder = (data) => {
     // Create the main folder if it wasn't already created 
     let isExists = fs.existsSync(data.path)
@@ -23,4 +28,8 @@ const getFiles = async (path) => {
       return filesSend
 }
 
-module.exports = { createNewFolder , getFiles }
+const uploadFile = async (file, path) =>{
+    fs.renameSync(`./myDrive/${file[0].filename}`, `${path}/${file[0].originalname}`)
+}
+
+module.exports = { createNewFolder , getFiles, createMyDrive, uploadFile }
