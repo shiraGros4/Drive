@@ -1,7 +1,7 @@
 import axios from 'axios'
+import readFiles from './readFiles';
 
-const addFile = async (dataForm) => {
-    console.log(dataForm.get('file'));
+const addFile = async (dataForm, setFiles) => {
     let path;
     if (localStorage.path === undefined) {
         path = './myDrive'
@@ -21,6 +21,7 @@ const addFile = async (dataForm) => {
                 "Content-Type": "multipart/form-data",
               }
           });
+          readFiles(localStorage.path ? localStorage.path : './myDrive').then(res => setFiles(res))
     }
     catch (err) {
         console.log(err);

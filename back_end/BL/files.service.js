@@ -11,7 +11,6 @@ const createNewFolder = (data) => {
     if (!isExists) {fs.mkdirSync(data.path)}
     let path = `${data.path}/${data.name}`
     isExists = fs.existsSync(path)
-    console.log(isExists);
     if (isExists && fs.statSync(path).isDirectory()){
         return false
     }
@@ -20,16 +19,37 @@ const createNewFolder = (data) => {
 }
 
 const getFiles = async (path) => {
-  let filesSend = fs.readdirSync(path, (err, files) => {
+   let filesSend = fs.readdirSync(path, (err, files) => {
         if (err){
           console.log(err);
           return}
       })
-      return filesSend
+    let files = filesSend.map((v) => {if (!(fs.statSync(`${path}/${v}`, v).isDirectory())){
+        console.log(fs.statSync(`${path}/${v}`, v).isDirectory());
+        console.log(`${path}/${v}`);
+        return v}})
+    files = files.filter(e => e!=undefined)
+    console.log(files);
+    return files
 }
+
+const getFolders = async (path) => {
+    let filesSend = fs.readdirSync(path, (err, files) => {
+          if (err){
+            console.log(err);
+            return}
+        })
+        let folds = filesSend.map((v) => {if (fs.statSync(`${path}/${v}`, v).isDirectory()){
+            console.log(fs.statSync(`${path}/${v}`, v).isDirectory());
+            console.log(`${path}/${v}`);
+            return v}})
+        folds = folds.filter(e => e!=undefined)
+        console.log(folds);
+        return folds
+  }
 
 const uploadFile = async (file, path) =>{
     fs.renameSync(`./myDrive/${file[0].filename}`, `${path}/${file[0].originalname}`)
 }
 
-module.exports = { createNewFolder , getFiles, createMyDrive, uploadFile }
+module.exports = { createNewFolder , getFiles, getFolders, createMyDrive, uploadFile }
