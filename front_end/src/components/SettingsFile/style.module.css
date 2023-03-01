@@ -2,6 +2,7 @@
     position: absolute;
     background-color: var(--primary);
     z-index: 5;
+    transition: all .5s ease-in-out;
 }
 
 .option {

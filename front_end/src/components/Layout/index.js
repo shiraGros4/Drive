@@ -1,12 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import FileContext from '../../context/fileContext'
 import AddButtons from '../AddButtons/index'
 import NavBar from '../NavBar'
 import PlayFiles from '../PlayFiles/index'
+import PopupInfo from '../PopupInfo/index'
 import style from './style.module.css'
-import {Route, Routes, Navigate} from 'react-router-dom'
 
 
 function Layout() {
+  const { popupInfoDisplay, setPopupInfoDisplay } = useContext(FileContext)
   return (
     <div className={style.layout}>
         <div className={style.navComp}>
@@ -16,10 +18,8 @@ function Layout() {
             <AddButtons/>
         </div>
         <div>
-          <Routes>
-            <Route path='/' element={<Navigate to='/myDrive'/>}/>
-            <Route path='/myDrive' element={<PlayFiles/>}/>
-          </Routes>
+          <PlayFiles/>
+          {popupInfoDisplay && <PopupInfo/>}
         </div>
     </div>
   )

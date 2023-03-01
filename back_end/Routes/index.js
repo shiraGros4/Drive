@@ -69,4 +69,46 @@ router.all('/rename', async (req, res)=> {
     }
 })
 
+router.all('/downloadZip', async (req, res)=> {
+    try {
+        let result = await fileService.downloadZip(req.body, res)
+        res.send(result)
+    }
+    catch (error) {
+        console.log(error);
+    }
+})
+
+router.all('/delete', async (req, res)=> {
+    try {
+        "innn"
+        await fileService.deleteFiles(req.body)
+        res.send('Successfully')
+    }
+    catch (error) {
+        console.log(error);
+    }
+})
+
+router.all('/download', async (req, res) => {
+    try {
+        let result = await fileService.download(req.body.path, res)
+        res.send(result)
+    }
+    catch (error) {
+        console.log(error);
+    }
+})
+
+router.all('/info', async (req, res) => {
+    try {
+        console.log(req.body.path);
+        let result = await fileService.getInfo(req.body.path, res)
+        res.send(result)
+    }
+    catch (error) {
+        console.log(error);
+    }
+})
+
 module.exports = router;

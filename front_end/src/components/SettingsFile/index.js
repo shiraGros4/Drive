@@ -1,11 +1,14 @@
 import React, {useContext, useState} from 'react'
 import FileContext from '../../context/fileContext';
+import fileDelete from '../../functions/delete';
+import downloadFile from '../../functions/downloadFile';
+import infoStats from '../../functions/infoStats';
 import rename from '../../functions/rename';
 import style from './style.module.css'
 
 
 function SettingFile({name}) {
-  const { setFilesDisplay, setFoldersDisplay } = useContext(FileContext)
+  const { setFilesDisplay, setFoldersDisplay, popupInfoDisplay, setPopupInfoDisplay } = useContext(FileContext)
   let changedName;
   let endName = name.split('.').pop()
   const [renameDisplay, setRenameDisplay] = useState(false)
@@ -20,15 +23,27 @@ function SettingFile({name}) {
       rename(name, changedName, setFilesDisplay, setFoldersDisplay);
     }
   }
+  const delFile = () => {
+    fileDelete(localStorage.path, name, setFilesDisplay, setFoldersDisplay)
+  }
+  const downFileClick = () => {
+    downloadFile(name)
+  }
+  const getInfo = () => {
+    let data = infoStats(name).then((info) => {
+      setPopupInfoDisplay(info)
+    })
+   
+  }
 
   return (
     <div className={style.popUp}>
       <div className={style.text}>
         <div className={style.option} onClick={setRename}>Rename</div>
         {renameDisplay && <input type="text" onKeyDown={reName}></input>}
-        <div className={style.option}>Download</div>
-        <div className={style.option}>Delete</div>
-        <div className={style.option}>Info</div>
+        <div className={style.option} onClick={downFileClick}>Download</div>
+        <div className={style.option} onClick={delFile}>Delete</div>
+        <div className={style.option} onClick={getInfo}>Info</div>
       </div>
     </div>
   )
