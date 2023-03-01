@@ -4,6 +4,7 @@
     font-family: 'Mynerve', cursive;
     text-align: center;
     overflow: hidden;
+    white-space:nowrap;
     text-overflow: ellipsis;
     width: 250px;
     height: 100px;

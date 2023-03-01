@@ -1,4 +1,5 @@
 const fs = require('fs')
+const AdmZip = require('adm-zip');
 
 const createMyDrive = () => {
     let isExists = fs.existsSync('./myDrive')
@@ -52,4 +53,54 @@ const renameFile = async (data)=>{
     fs.renameSync(`${data.path}/${data.origName}`, `${data.path}/${data.newName}`)
 }
 
-module.exports = { createNewFolder , getFiles, getFolders, createMyDrive, uploadFile ,renameFile}
+const downloadZip = ({path}, res) => {
+    const zip = new AdmZip();
+    path=path.substring(2)
+    let dirName = __dirname.split('\BL')[0] + path
+    dirName = dirName.split('/')[0]
+    zip.addLocalFolder(path)
+    const downloadName = `DownloadDrive ${Date.now()}.zip`;
+    const data = zip.toBuffer();
+    
+    
+    zip.writeZip(dirName + "/" + downloadName);
+    res.set('Content-Type', 'application/zip');
+    res.set('Content-Disposition', `attachment; filename=${downloadName}`);
+    res.set('Content-Length', data.length);
+    res.send(data);
+}
+
+const deleteFiles = (data) => {
+    let files = fs.readdirSync(data.path, (err, files) => {
+        if (err){
+          console.log(err);
+          return}
+      })
+    files.map(file => {if (file.includes(data.name)){
+        if (data.name === '.zip'){
+            fs.unlinkSync(data.path + "/" + file)
+        }
+        else if(fs.statSync(`${data.path}/${data.name}`, data.name).isDirectory()){
+            fs.rmSync(`${data.path}/${data.name}`, { recursive: true, force: true });
+        }
+        else{
+            fs.unlinkSync(data.path + "/" + file)
+        }
+        
+    }})
+
+}
+
+const download = (path, res) => {
+    let file = fs.readFileSync(path);
+    res.send(file)
+}
+
+const getInfo = (path, res) => {
+    console.log(fs.statSync(path));
+    let file = fs.statSync(path);
+    res.send(file)
+}
+
+module.exports = { createNewFolder , getFiles, getFolders, createMyDrive, uploadFile ,
+    renameFile, downloadZip, deleteFiles, download, getInfo}
