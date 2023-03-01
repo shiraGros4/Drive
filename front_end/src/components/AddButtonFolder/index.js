@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import NameFolder from '../NameFolder/index'
+import style from '../AddButtonFile/style.module.css'
+import {BsFolderPlus} from 'react-icons/bs'
 
 function index() {
     // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -7,7 +9,10 @@ function index() {
     
   return (
     <div>
-        <button className='add-button' onClick={()=> setNameFolder(!nameFolder)}>Add Folder</button>
+        <button className={style.button} onClick={()=> setNameFolder(!nameFolder)}>
+          Add Folder
+          <BsFolderPlus/>
+        </button>
         {nameFolder && <NameFolder setNameFolder={setNameFolder}/>}
     </div>
   )

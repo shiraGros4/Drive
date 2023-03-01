@@ -1,0 +1,14 @@
+.popUp{
+    position: absolute;
+    background-color: var(--primary);
+    z-index: 5;
+}
+
+.option {
+    border: 1px solid black;
+}
+
+.text :hover{
+    color :rgb(0,0,0,0.5);
+    cursor: pointer;
+}

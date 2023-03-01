@@ -1,3 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Mynerve&family=Poppins:ital,wght@1,500&display=swap');
+
 .files{
-    border: 1px solid black;
+    font-family: 'Mynerve', cursive;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 250px;
+    height: 100px;
+    margin: 10px;
+    padding: 10px;
+    box-shadow: 2px 19px 31px rgba(0, 0, 0, 0.2);
+    transition: all .2s ease-in-out;
 }
+
+.container{
+    position: relative;
+    transition: all .2s ease-in-out;
+}
+
+.files:hover{
+    transform: scale(1.1); 
+}
+
+.name:hover {
+    color : var(--primary)
+}
+
+.click{
+    cursor: pointer;
+}
+
+.settings {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    right: 15px;
+    z-index: 4;
+}
+
+.menu{
+    position: absolute;
+     top: 20px;
+     right: 0;
+     z-index:3;
+ }
+
+ .icon{
+    top:0;
+    left: 15px;
+ }
+
+
+
+

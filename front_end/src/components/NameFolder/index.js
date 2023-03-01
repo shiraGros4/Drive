@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react'
-import './style.css'
+import style from './style.module.css'
 import createFolder from '../../functions/createFolder';
 import FileContext from '../../context/fileContext'
 
@@ -14,15 +14,16 @@ function NameFolder({setNameFolder}) {
         console.log(value);
     }
   return (
-    <div className='popUp' onClick={() => setNameFolder(false)}>
-        <div onClick={(event) => event.stopPropagation()}>
-        <div> New Folder</div>
-        <div>
-            <input type="text" onChange={(e)=>setValue(e.target.value)} placeholder='folder without name'></input>
-        </div>
-        <div className='btn-create'>
-            <button onClick={handleClick}>Create</button>
-        </div>
+    <div className={style.popUp} onClick={() => setNameFolder(false)}>
+        <div className={style.back}
+        onClick={(event) => event.stopPropagation()}>
+            <div> New Folder</div>
+            <div>
+                <input type="text" onChange={(e)=>setValue(e.target.value)} placeholder='folder without name'></input>
+            </div>
+            <div className={style.btnCreate}>
+                <button onClick={handleClick}>Create</button>
+            </div>
         </div>
     </div>
   )

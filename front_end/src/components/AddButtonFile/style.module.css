@@ -1,0 +1,12 @@
+.button {
+    
+    width: 150px;
+    height: 70px;
+    font-size: large;
+    margin: 5px;
+    padding: 5px;
+    
+}
+.button:hover {
+    background-color: var(--primary);
+}

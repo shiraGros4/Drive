@@ -1,27 +1,21 @@
 import axios from 'axios'
 import readFiles from './readFiles';
 
-const addFile = async (dataForm, setFiles) => {
-    let path;
-    if (localStorage.path === undefined) {
-        path = './myDrive'
-        localStorage.path = path;
-    }
-    else{
-        path = localStorage.path;
-    }
+const addFile = async (dataForm, setFilesDisplay) => {
     try {
-        
         await axios({
             method: "post",
             url: "http://localhost:4000/api/uploadFile",
             data: dataForm,
-            params: {q: path},
+            params: {q: localStorage.path},
             headers: {
                 "Content-Type": "multipart/form-data",
               }
           });
-          readFiles(localStorage.path ? localStorage.path : './myDrive').then(res => setFiles(res))
+          readFiles(localStorage.path).then(res => {
+            setFilesDisplay(res)
+        console.log(res);})
+          
     }
     catch (err) {
         console.log(err);
