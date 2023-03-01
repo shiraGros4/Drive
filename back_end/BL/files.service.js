@@ -25,11 +25,8 @@ const getFiles = async (path) => {
           return}
       })
     let files = filesSend.map((v) => {if (!(fs.statSync(`${path}/${v}`, v).isDirectory())){
-        console.log(fs.statSync(`${path}/${v}`, v).isDirectory());
-        console.log(`${path}/${v}`);
         return v}})
     files = files.filter(e => e!=undefined)
-    console.log(files);
     return files
 }
 
@@ -40,11 +37,10 @@ const getFolders = async (path) => {
             return}
         })
         let folds = filesSend.map((v) => {if (fs.statSync(`${path}/${v}`, v).isDirectory()){
-            console.log(fs.statSync(`${path}/${v}`, v).isDirectory());
-            console.log(`${path}/${v}`);
+            
             return v}})
         folds = folds.filter(e => e!=undefined)
-        console.log(folds);
+        
         return folds
   }
 
@@ -52,4 +48,8 @@ const uploadFile = async (file, path) =>{
     fs.renameSync(`./myDrive/${file[0].filename}`, `${path}/${file[0].originalname}`)
 }
 
-module.exports = { createNewFolder , getFiles, getFolders, createMyDrive, uploadFile }
+const renameFile = async (data)=>{
+    fs.renameSync(`${data.path}/${data.origName}`, `${data.path}/${data.newName}`)
+}
+
+module.exports = { createNewFolder , getFiles, getFolders, createMyDrive, uploadFile ,renameFile}

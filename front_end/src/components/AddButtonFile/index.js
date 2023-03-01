@@ -1,9 +1,11 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import FileContext from '../../context/fileContext';
 import addFile from '../../functions/addFile';
+import style from './style.module.css'
+import {RxFilePlus} from 'react-icons/rx'
 
 function AddButtonFile() {
-  const { setFiles } = useContext(FileContext)
+  const { filesDisplay, setFilesDisplay } = useContext(FileContext)
   const inputRef = useRef('')
   const [selectedFile, setSelectedFile] = useState(undefined);
 
@@ -19,7 +21,7 @@ function AddButtonFile() {
     if (selectedFile){
       let formData = new FormData();
       formData.append("file", selectedFile)
-      if (formData) {addFile(formData, setFiles)}
+      if (formData) {addFile(formData, setFilesDisplay, filesDisplay)}
     }
     
   }, [selectedFile])
@@ -27,8 +29,12 @@ function AddButtonFile() {
 
   return (
     <div>
-        <button className='add' onClick={inputFileRef}>Add File</button>
-        <input type="file" ref={inputRef} className='add-button' 
+        <button className={style.button} onClick={inputFileRef}>
+          Add File
+          <RxFilePlus/>
+        </button>
+        
+        <input type="file" ref={inputRef} 
         onChange={(e) => handleOnChange(e)}
          hidden/>
     </div>

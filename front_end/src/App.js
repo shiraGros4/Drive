@@ -1,23 +1,25 @@
-import './Style/globalStyle.css';
-import './App.css'
+import style from './style.module.css'
 import Layout from './components/Layout/index'
+import Header from './components/Header';
 import { useState } from 'react';
 import FileContext from './context/fileContext';
+import { BrowserRouter } from 'react-router-dom';
 
 function App() {
   const [ filesDisplay, setFilesDisplay] = useState([])
   const [ foldersDisplay, setFoldersDisplay] = useState([])
-  const [files, setFiles] = useState([])
   return (
-    <div className="App">
-      <header className='App-header'>
-        My Drive
+    <div className={style.App}>
+      <header className={style.AppHeader}>
+        <Header/>
       </header>
-      <body className='body'>
+      <div className={style.body}>
         <FileContext.Provider value={{filesDisplay, setFilesDisplay, foldersDisplay, setFoldersDisplay}}>
-          <Layout/>
+          <BrowserRouter>
+             <Layout/>
+          </BrowserRouter>
         </FileContext.Provider>
-      </body>
+      </div>
     </div>
   );
 }

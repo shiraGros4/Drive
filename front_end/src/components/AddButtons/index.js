@@ -1,14 +1,16 @@
 import React from 'react'
 import AddButtonFile from '../AddButtonFile/index'
 import AddButtonFolder from '../AddButtonFolder/index'
-import './style.css'
+import GoBackButton from '../GoBackButton'
+import style from './style.module.css'
 
 
 function AddButtons() {
   return (
-    <div className='add'>
+    <div className={style.add}>
         <AddButtonFile/>
         <AddButtonFolder/>
+        <GoBackButton/>
     </div>
   )
 }

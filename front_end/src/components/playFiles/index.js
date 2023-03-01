@@ -5,6 +5,7 @@ import readFiles from '../../functions/readFiles'
 import Folder from '../Folder'
 import File from '../File'
 import readFolders from '../../functions/readFolders'
+import style from './style.module.css'
 
 function PlayFiles() {
   
@@ -19,14 +20,30 @@ function PlayFiles() {
       
       
   return (
-    <div>
-      <div className="folds">
-        {foldersDisplay.map((v) => {
-          console.log(foldersDisplay);
-          return <Folder name={v}/>})}
+    <div className={style.all}>
+      <br/>
+      <div className={style.name}>
+        Folders
       </div>
-      <div className='files'>
-        {filesDisplay.map((v) => {return <File name={v}/>})}
+      
+      <br/>
+      <div className={style.allFiles}>
+      
+        {foldersDisplay.length > 0 ?
+         foldersDisplay.map((v) => { return <Folder name={v} key={v}/> })
+         : "No Folders"}
+      </div>
+      <br/><br/>
+      <div className={style.name}>
+        Files
+      </div>
+      
+      <br></br>
+      <div className={style.allFiles}>
+      
+      {filesDisplay.length > 0 ?
+         filesDisplay.map((v) => { return <File name={v} key={v} /> })
+         : "No Files"}
       </div>
     </div>
   )

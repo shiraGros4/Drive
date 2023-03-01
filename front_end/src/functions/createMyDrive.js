@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const createMyDrive = async () => {
+    localStorage.path = "./myDrive"
     try {
         const res = await axios({
             method: "post",
