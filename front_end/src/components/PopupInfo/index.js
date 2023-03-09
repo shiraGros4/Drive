@@ -1,15 +1,15 @@
 import React, { useContext } from 'react'
 import FileContext from '../../context/fileContext';
-import style from './style.module.css'
+import style from '../SettingsFile/style.module.css'
 
 function PopuoInfo() {
-  const {popupInfoDisplay, setPopupInfoDisplay } = useContext(FileContext)
-  console.log(popupInfoDisplay);
+  const {popupInfo } = useContext(FileContext)
+  console.log(popupInfo);
   return (
-    <div className={style.container}>
-      <p>File Size - {(popupInfoDisplay.size / (1024*1024)).toFixed(3)}MG</p>
-      <p>Created - {(popupInfoDisplay.birthtime.split('.')[0]).substring(0,10)}</p>
-      <p>Last Change - {(popupInfoDisplay.atime.split('.')[0]).substring(0,10)}</p>
+    <div className={style.popUp}>
+      <div className={`${style.option} ${style.details}`}>File Size {(popupInfo.size / (1024*1024)).toFixed(3)}MG</div>
+      <div className={`${style.option} ${style.details}`}>Created {(popupInfo.birthtime.split('.')[0]).substring(0,10)}</div>
+      <div className={`${style.option} ${style.details}`}>Last Change {(popupInfo.atime.split('.')[0]).substring(0,10)}</div>
     </div>
   )
 }

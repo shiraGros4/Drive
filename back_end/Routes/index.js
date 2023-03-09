@@ -102,7 +102,6 @@ router.all('/download', async (req, res) => {
 
 router.all('/info', async (req, res) => {
     try {
-        console.log(req.body.path);
         let result = await fileService.getInfo(req.body.path, res)
         res.send(result)
     }

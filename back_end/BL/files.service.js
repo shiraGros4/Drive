@@ -97,7 +97,6 @@ const download = (path, res) => {
 }
 
 const getInfo = (path, res) => {
-    console.log(fs.statSync(path));
     let file = fs.statSync(path);
     res.send(file)
 }

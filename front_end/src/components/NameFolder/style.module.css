@@ -16,4 +16,35 @@
 
 .back{
     background-color: var(--secondary);
+    width: 30%;
+    height: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+button {
+    margin: 5px;
+    padding: 5px;
+    font-size: large;
+    width: 100% !important;
+    height: 100% !important;
+    background-color: var(--secondary) !important;
+    border: 1px solid black;
+}
+
+button :hover{
+    background-color: var(--third) !important;
+}
+
+
+.textFolder {
+    margin: 5px;
+    padding: 5px;
+    height: 70%;
+}
+
+.title {
+    font-size: larger;
 }

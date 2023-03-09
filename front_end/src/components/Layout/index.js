@@ -1,14 +1,13 @@
-import React, { useContext } from 'react'
-import FileContext from '../../context/fileContext'
+
 import AddButtons from '../AddButtons/index'
 import NavBar from '../NavBar'
 import PlayFiles from '../PlayFiles/index'
-import PopupInfo from '../PopupInfo/index'
+
 import style from './style.module.css'
 
 
 function Layout() {
-  const { popupInfoDisplay, setPopupInfoDisplay } = useContext(FileContext)
+
   return (
     <div className={style.layout}>
         <div className={style.navComp}>
@@ -19,7 +18,6 @@ function Layout() {
         </div>
         <div>
           <PlayFiles/>
-          {popupInfoDisplay && <PopupInfo/>}
         </div>
     </div>
   )

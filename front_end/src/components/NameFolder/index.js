@@ -17,11 +17,11 @@ function NameFolder({setNameFolder}) {
     <div className={style.popUp} onClick={() => setNameFolder(false)}>
         <div className={style.back}
         onClick={(event) => event.stopPropagation()}>
-            <div> New Folder</div>
-            <div>
-                <input type="text" onChange={(e)=>setValue(e.target.value)} placeholder='folder without name'></input>
+            <div className={style.title}> New Folder</div>
+            <div >
+                <input type="text" className={style.textFolder} onChange={(e)=>setValue(e.target.value)} placeholder='folder without name'></input>
             </div>
-            <div className={style.btnCreate}>
+            <div >
                 <button onClick={handleClick}>Create</button>
             </div>
         </div>

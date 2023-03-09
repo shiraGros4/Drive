@@ -8,7 +8,7 @@ import { BrowserRouter } from 'react-router-dom';
 function App() {
   const [ filesDisplay, setFilesDisplay] = useState([])
   const [ foldersDisplay, setFoldersDisplay] = useState([])
-  const [ popupInfoDisplay, setPopupInfoDisplay] = useState(false)
+  const [ popupInfo, setPopupInfo] = useState(false)
   return (
     <div className={style.App}>
       <header className={style.AppHeader}>
@@ -16,7 +16,7 @@ function App() {
       </header>
       <div className={style.body}>
         <FileContext.Provider value={{filesDisplay, setFilesDisplay, foldersDisplay,
-           setFoldersDisplay, popupInfoDisplay, setPopupInfoDisplay}}>
+           setFoldersDisplay, popupInfo, setPopupInfo}}>
           <BrowserRouter>
              <Layout/>
           </BrowserRouter>

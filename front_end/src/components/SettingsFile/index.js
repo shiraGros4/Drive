@@ -7,11 +7,13 @@ import rename from '../../functions/rename';
 import style from './style.module.css'
 
 
-function SettingFile({name}) {
-  const { setFilesDisplay, setFoldersDisplay, popupInfoDisplay, setPopupInfoDisplay } = useContext(FileContext)
+function SettingFile(props) {
+  let name = props.name;
+  const { setFilesDisplay, setFoldersDisplay, setPopupInfo } = useContext(FileContext)
   let changedName;
   let endName = name.split('.').pop()
   const [renameDisplay, setRenameDisplay] = useState(false)
+ 
   const setRename = (e) =>{
     setRenameDisplay(!renameDisplay)
   }
@@ -30,10 +32,13 @@ function SettingFile({name}) {
     downloadFile(name)
   }
   const getInfo = () => {
-    let data = infoStats(name).then((info) => {
-      setPopupInfoDisplay(info)
-    })
-   
+    infoStats(name).then((info) => {
+      console.log(info);
+      setPopupInfo(info)
+    }).then((info) =>{
+      props.setInfoDisplay(true)
+      props.setDisplaySettings(false)
+    }) 
   }
 
   return (
