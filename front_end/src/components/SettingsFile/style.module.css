@@ -9,6 +9,12 @@
     border: 1px solid black;
 }
 
+.details{
+    width: 180px;
+    
+}
+
+
 .text :hover{
     color :rgb(0,0,0,0.5);
     cursor: pointer;

@@ -8,7 +8,7 @@ import readFolders from '../../functions/readFolders'
 import style from './style.module.css'
 
 function PlayFiles() {
-  
+
     const { filesDisplay, setFilesDisplay } = useContext(FileContext)
     const { foldersDisplay, setFoldersDisplay } = useContext(FileContext)
     //using this function to call server and get files name
@@ -17,22 +17,19 @@ function PlayFiles() {
       readFiles(localStorage.path ? localStorage.path : './myDrive').then(res => setFilesDisplay(res))
       readFolders(localStorage.path ? localStorage.path : './myDrive').then(res => setFoldersDisplay(res))
     }, [ setFilesDisplay, setFoldersDisplay])
-      
+    
       
   return (
     <div className={style.all}>
       <br/>
-      <div className={style.name}>
+      { foldersDisplay.length > 0 && <div className={style.name}>
         Folders
-      </div>
+      </div>}
       
       <br/>
-      <div className={style.allFiles}>
-      
-        {foldersDisplay.length > 0 ?
-         foldersDisplay.map((v) => { return <Folder name={v} key={v}/> })
-         : "No Folders"}
-      </div>
+      {foldersDisplay.length > 0 && <div className={style.allFiles}>
+        {foldersDisplay.map((v) => { return <Folder name={v} key={v}/> })}
+      </div>}
       <br/><br/>
       <div className={style.name}>
         Files
@@ -42,7 +39,7 @@ function PlayFiles() {
       <div className={style.allFiles}>
       
       {filesDisplay.length > 0 ?
-         filesDisplay.map((v) => { return <File name={v} key={v} /> })
+         filesDisplay.map((v) => { return <File name={v} key={v}/> })
          : "No Files"}
       </div>
     </div>

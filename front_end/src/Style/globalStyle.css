@@ -14,7 +14,7 @@ a {
 :root {
     font-family: 'Shantell Sans', cursive;
     --primary : rgb(83, 83, 240);
-    --secondary :rgb(83, 83, 240,0.7);
+    --secondary :rgb(83, 83, 240,0.9);
     --third :  rgb(91, 82, 250);
 }
 
